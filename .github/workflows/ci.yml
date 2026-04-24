@@ -11,17 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'  
           cache: 'yarn'
+          cache-dependency-path: './app/yarn.lock'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: yarn install
+        working-directory: ./app
 
-      - name: Run tests
+      - name: Run Tests
         run: yarn test
+        working-directory: ./app
